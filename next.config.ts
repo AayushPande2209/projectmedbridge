@@ -20,13 +20,12 @@ export default async function nextConfig(
 
   return {
     ...userConfig,
-    output: 'standalone',
+    output: 'export',
     distDir: '.next',
     devIndicators: false,
     images: {
       ...userConfig.images,
-      unoptimized:
-        userConfig.images?.unoptimized ?? process.env.NODE_ENV === 'development',
+      unoptimized: true,
     },
     logging: {
       ...userConfig.logging,
