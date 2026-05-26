@@ -24,10 +24,10 @@ export default function FeaturedSection() {
               >
                 Carnegie Young Leaders for Civic Preparedness
               </a>
-              , a national fellowship from the Institute for Citizens &amp; Scholars backed by
+              , a national fellowship from the Institute for Citizens &amp; Scholars backed by the
               Carnegie Corporation of New York.
               The fellowship comes with $7,500 in project funding,
-              a year of coaching, and a  network of civic leaders across the United States.
+              a year of coaching, and a network of civic leaders across the United States.
             </p>
             <a
               href={`https://www.youtube.com/watch?v=${PITCH_VIDEO_ID}`}
