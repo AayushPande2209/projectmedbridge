@@ -1,9 +1,10 @@
+import type { NextConfig } from 'next'
+
 const repoName = 'projectmedbridge'
 const isGithubPages = process.env.GITHUB_PAGES === 'true'
 const basePath = isGithubPages ? `/${repoName}` : ''
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   output: 'export',
   basePath,
   assetPrefix: isGithubPages ? `${basePath}/` : undefined,
