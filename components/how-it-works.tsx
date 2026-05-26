@@ -25,7 +25,7 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 bg-white border-b border-border/35">
       <div className="max-w-6xl mx-auto px-6">
-        <p className="text-xs font-semibold tracking-widest uppercase text-brand-red mb-4">Process</p>
+        <p className="text-xs font-semibold tracking-widest uppercase text-brand-red mb-4">How It Works</p>
         <h2 className="text-4xl md:text-5xl font-extrabold text-foreground leading-[1.1] tracking-tight text-balance mb-16">
           Three steps. Zero burden on your team.
         </h2>

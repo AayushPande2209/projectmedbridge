@@ -136,11 +136,19 @@
   body {
     @apply bg-background text-foreground;
   }
-  p a, li a {
-    @apply underline text-inherit transition-colors duration-150;
+  p a,
+  li a {
+    @apply text-foreground font-medium underline underline-offset-4 decoration-brand-red/40 transition-colors;
   }
-  p a:hover, li a:hover {
-    @apply text-brand-red;
+  p a:hover,
+  li a:hover {
+    @apply decoration-brand-red;
+  }
+}
+
+@layer components {
+  .link-text {
+    @apply text-foreground font-medium underline underline-offset-4 decoration-brand-red/40 hover:decoration-brand-red transition-colors;
   }
 }
 
