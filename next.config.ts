@@ -48,6 +48,8 @@ export default async function nextConfig(
         allowedOrigins: [
           ...(userConfig.experimental?.serverActions?.allowedOrigins || []),
           '*.vusercontent.net',
+          'projectmedbridge.org',
+          'www.projectmedbridge.org',
         ],
       },
     },

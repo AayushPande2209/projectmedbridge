@@ -8,6 +8,16 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "routes": [
+    {
+      "pattern": "www.projectmedbridge.org",
+      "custom_domain": true
+    },
+    {
+      "pattern": "projectmedbridge.org",
+      "custom_domain": true
+    }
+  ],
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",

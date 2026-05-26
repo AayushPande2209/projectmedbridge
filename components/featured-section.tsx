@@ -26,10 +26,8 @@ export default function FeaturedSection() {
               </a>
               , a national fellowship from the Institute for Citizens &amp; Scholars backed by
               Carnegie Corporation of New York.
-              The fellowship comes with up to{" "}
-              <strong className="font-semibold text-foreground">$7,500</strong> in project funding,
-              a year of coaching, and a national network of young civic leaders working on
-              problems their communities can't afford to ignore.
+              The fellowship comes with $7,500 in project funding,
+              a year of coaching, and a  network of civic leaders across the United States.
             </p>
             <a
               href={`https://www.youtube.com/watch?v=${PITCH_VIDEO_ID}`}
@@ -57,7 +55,7 @@ export default function FeaturedSection() {
               <div className="flex items-center gap-2 px-4 py-3 bg-brand-ice border-t border-border/60">
                 <Play size={14} className="text-brand-red shrink-0" aria-hidden="true" />
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  The two-minute pitch that got us into the fellowship.
+                Meet the team and hear why we built Project MedBridge.
                 </p>
               </div>
             </div>

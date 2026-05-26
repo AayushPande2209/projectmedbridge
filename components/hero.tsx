@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { ArrowDown } from "lucide-react"
 import { withBasePath } from "@/lib/base-path"
+import PartnerLogos from "@/components/partner-logos"
 
 export default function Hero() {
   const [offset, setOffset] = useState(0)
@@ -19,7 +19,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0B0C10]">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#0B0C10]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
         <div
@@ -39,33 +39,35 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10]/30 via-transparent to-[#0B0C10]/95 z-10" />
       </div>
 
-      <div className="relative z-20 max-w-6xl mx-auto px-6 w-full text-left">
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] font-black text-white leading-[1.05] tracking-tight mb-8 max-w-5xl">
-          One hospital's trash is another's
-          <br />
-          <span className="text-brand-red">treasure.</span>
+      <div className="relative z-20 flex flex-col flex-1 max-w-6xl mx-auto px-6 w-full">
+        <div className="flex flex-col justify-center flex-1 py-24 md:py-28">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] font-black text-white leading-[1.05] tracking-tight mb-8 max-w-5xl">
+            One hospital's trash is another's
+            <br />
+            <span className="text-brand-red">treasure.</span>
+          </h1>
+          <p className="text-xl sm:text-2xl text-white/80 leading-relaxed max-w-3xl mb-12 text-pretty">
+            Project MedBridge is Central Ohio's first student-led medical redistribution network, redirecting surplus hospital supplies to under-resourced clinics worldwide.
+          </p>
 
-        </h1>
-        <p className="text-xl sm:text-2xl text-white/80 leading-relaxed max-w-3xl mb-12 text-pretty">
-          Project MedBridge is Central Ohio's first student-led medical redistribution network: redirecting surplus hospital supplies to under-resourced clinics worldwide.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-start">
-          <a
-            href="#partnership"
-            className="px-8 py-4 rounded-md bg-brand-red text-white font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 text-center"
-          >
-            Partner With Us
-          </a>
-          <a
-            href="#how-it-works"
-            className="px-8 py-4 rounded-md border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-colors text-center"
-          >
-            How It Works
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-start">
+            <a
+              href="#partnership"
+              className="px-8 py-4 rounded-md bg-brand-red text-white font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 text-center"
+            >
+              Partner With Us
+            </a>
+            <a
+              href="#how-it-works"
+              className="px-8 py-4 rounded-md border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-colors text-center"
+            >
+              How It Works
+            </a>
+          </div>
         </div>
+
+        <PartnerLogos variant="dark" />
       </div>
     </section>
   )
 }
-

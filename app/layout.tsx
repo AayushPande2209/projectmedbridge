@@ -1,16 +1,108 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
+import JsonLd from '@/components/json-ld'
+import {
+  getMetadataBase,
+  getSiteUrl,
+  ogImageAlt,
+  ogImageHeight,
+  ogImagePath,
+  ogImageWidth,
+  siteDescription,
+  siteEmail,
+  siteKeywords,
+  siteLocale,
+  siteName,
+  siteTitle,
+} from '@/lib/site'
 import './globals.css'
 
 const GA_MEASUREMENT_ID = 'G-T7THZ0JGMM'
 
 export const metadata: Metadata = {
-  title: 'Project MedBridge — Medical Supply Redistribution, Central Ohio',
-  description:
-    'Project MedBridge is a student-led nonprofit that redistributes surplus medical supplies from healthcare providers to under-resourced communities across Central Ohio.',
-  keywords: ['medical supplies', 'nonprofit', 'Central Ohio', 'healthcare', 'HOSA', 'surplus redistribution'],
-  generator: 'v0.app',
+  metadataBase: getMetadataBase(),
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: siteKeywords,
+  applicationName: siteName,
+  authors: [{ name: siteName, url: getSiteUrl() }],
+  creator: siteName,
+  publisher: siteName,
+  category: 'Nonprofit',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: siteLocale,
+    url: '/',
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: ogImagePath,
+        secureUrl: ogImagePath,
+        width: ogImageWidth,
+        height: ogImageHeight,
+        alt: ogImageAlt,
+        type: 'image/jpeg',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: {
+      url: ogImagePath,
+      alt: ogImageAlt,
+      width: ogImageWidth,
+      height: ogImageHeight,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    shortcut: '/icon.svg',
+    apple: [{ url: ogImagePath, type: 'image/jpeg' }],
+  },
+  manifest: '/site.webmanifest',
+  other: {
+    'og:image:width': String(ogImageWidth),
+    'og:image:height': String(ogImageHeight),
+    'og:email': siteEmail,
+    'apple-mobile-web-app-title': siteName,
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#EDF2F4' },
+    { media: '(prefers-color-scheme: dark)', color: '#2B2D42' },
+  ],
+  colorScheme: 'light dark',
 }
 
 export default function RootLayout({
@@ -21,6 +113,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background scroll-smooth">
       <body className="font-sans antialiased">
+        <JsonLd />
         {children}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
