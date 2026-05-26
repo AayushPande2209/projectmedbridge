@@ -1,5 +1,3 @@
-import { basePath } from '@/lib/base-path'
-
 export const siteName = 'Project MedBridge'
 export const siteTitle =
   'Project MedBridge: Central Ohio\'s Medical Redistribution Network'
@@ -37,19 +35,14 @@ export function getSiteOrigin(): string {
   return siteUrl
 }
 
-/** Full canonical URL including optional subpath (legacy GitHub Pages only). */
+/** Full canonical URL for a path on the site. */
 export function getSiteUrl(path = ''): string {
   const origin = getSiteOrigin()
-  const bp = basePath.replace(/\/$/, '')
   const suffix = path ? (path.startsWith('/') ? path : `/${path}`) : ''
-  return `${origin}${bp}${suffix}`
+  return `${origin}${suffix}`
 }
 
 export function getMetadataBase(): URL {
   const url = getSiteUrl()
   return new URL(url.endsWith('/') ? url : `${url}/`)
-}
-
-export function withAssetPath(path: string): string {
-  return `${basePath}${path.startsWith('/') ? path : `/${path}`}`
 }

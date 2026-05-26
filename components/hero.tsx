@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { withBasePath } from "@/lib/base-path"
 import PartnerLogos from "@/components/partner-logos"
 
 export default function Hero() {
@@ -27,7 +26,7 @@ export default function Hero() {
           style={{ transform: `translateY(${offset}px)` }}
         >
           <Image
-            src={withBasePath("/images/hero.jpg")}
+            src="/images/hero.jpg"
             alt="Surplus Medical Supplies Background"
             fill
             priority

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { withBasePath } from "@/lib/base-path"
 
 const navLinks = [
   { label: "The Problem", href: "#problem" },
@@ -32,7 +31,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center group">
           <Image
-            src={withBasePath(scrolled ? "/images/logo-dark.svg" : "/images/logo-light.svg")}
+            src={scrolled ? "/images/logo-dark.svg" : "/images/logo-light.svg"}
             alt="Project MedBridge Logo"
             width={120}
             height={40}

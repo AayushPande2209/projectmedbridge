@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { withBasePath } from "@/lib/base-path"
 
 const footerLinks = {
   Organization: [
@@ -26,7 +25,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <a href="#" className="flex items-center mb-4">
               <Image
-                src={withBasePath("/images/logo-light.svg")}
+                src="/images/logo-light.svg"
                 alt="Project MedBridge Logo"
                 width={138}
                 height={40}
