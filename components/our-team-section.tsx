@@ -1,30 +1,31 @@
 import Image from "next/image"
+import { withBasePath } from "@/lib/base-path"
 
 const team = [
   {
     name: "Ben Kurian",
     title: "Team Lead",
-    image: "/images/ben-kurian.jpg",
+    image: withBasePath("/images/ben-kurian.jpg"),
   },
   {
     name: "Naman Soni",
     title: "Operations",
-    image: "/images/naman-soni.jpg",
+    image: withBasePath("/images/naman-soni.jpg"),
   },
   {
     name: "Aayush Pande",
     title: "Technology",
-    image: "/images/aayush-pande.jpg",
+    image: withBasePath("/images/aayush-pande.jpg"),
   },
   {
     name: "Vahin Dubey",
     title: "Outreach",
-    image: "/images/vahin-dubey.jpg",
+    image: withBasePath("/images/vahin-dubey.jpg"),
   },
   {
     name: "Arjun Pandya",
     title: "Partnerships",
-    image: "/images/arjun-pandya.jpg",
+    image: withBasePath("/images/arjun-pandya.jpg"),
   },
 ]
 

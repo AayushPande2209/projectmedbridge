@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { ArrowDown } from "lucide-react"
+import { withBasePath } from "@/lib/base-path"
 
 export default function Hero() {
   const [offset, setOffset] = useState(0)
@@ -26,7 +27,7 @@ export default function Hero() {
           style={{ transform: `translateY(${offset}px)` }}
         >
           <Image
-            src="/images/hero.jpg"
+            src={withBasePath("/images/hero.jpg")}
             alt="Surplus Medical Supplies Background"
             fill
             priority

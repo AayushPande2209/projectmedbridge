@@ -1,10 +1,11 @@
 import Image from "next/image"
+import { withBasePath } from "@/lib/base-path"
 
 const partners = [
-  { name: "C&S", src: "/images/c&s.png", href: "https://cands.org/" },
-  { name: "Ohio HOSA", src: "/images/hosa.png", href: "https://ohiohosa.org/" },
-  { name: "Leadership Initiatives", src: "/images/leadershipinitiatives.png", href: "https://lichangesummer.org/" },
-  { name: "OhioHealth", src: "/images/ohiohealth.png", href: "https://www.ohiohealth.com/" },
+  { name: "C&S", src: withBasePath("/images/c&s.png"), href: "https://cands.org/" },
+  { name: "Ohio HOSA", src: withBasePath("/images/hosa.png"), href: "https://ohiohosa.org/" },
+  { name: "Leadership Initiatives", src: withBasePath("/images/leadershipinitiatives.png"), href: "https://lichangesummer.org/" },
+  { name: "OhioHealth", src: withBasePath("/images/ohiohealth.png"), href: "https://www.ohiohealth.com/" },
 ]
 
 export default function PartnerLogos() {
