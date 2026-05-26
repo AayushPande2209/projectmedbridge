@@ -73,13 +73,19 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-b border-border px-6 pb-5 pt-2 flex flex-col gap-4">
+        <div
+          className={`md:hidden border-b px-6 pb-5 pt-2 flex flex-col gap-4 ${
+            scrolled ? "bg-white border-border" : "bg-[#0B0C10] border-white/10"
+          }`}
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-muted-foreground hover:text-brand-red transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                scrolled ? "text-muted-foreground hover:text-brand-red" : "text-white/80 hover:text-brand-red"
+              }`}
             >
               {link.label}
             </a>

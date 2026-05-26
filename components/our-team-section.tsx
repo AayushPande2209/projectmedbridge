@@ -1,40 +1,35 @@
 import Image from "next/image"
-import { Building2, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
 
 const team = [
   {
     name: "Ben Kurian",
     title: "Team Lead",
     email: "ben@projectmedbridge.org",
-    highSchool: "Olentangy Liberty High School",
     image: "/images/ben-kurian.jpg",
   },
   {
     name: "Naman Soni",
     title: "Operations",
     email: "naman@projectmedbridge.org",
-    highSchool: "Olentangy High School",
     image: "/images/naman-soni.jpg",
   },
   {
     name: "Aayush Pande",
     title: "Technology",
     email: "aayush@projectmedbridge.org",
-    highSchool: "Olentangy Liberty High School",
     image: "/images/aayush-pande.jpg",
   },
   {
     name: "Vahin Dubey",
     title: "Outreach",
     email: "vahin@projectmedbridge.org",
-    highSchool: "Olentangy Liberty High School",
     image: "/images/vahin-dubey.jpg",
   },
   {
     name: "Arjun Pandya",
     title: "Partnerships",
     email: "arjun@projectmedbridge.org",
-    highSchool: "Olentangy High School",
     image: "/images/arjun-pandya.jpg",
   },
 ]
@@ -63,10 +58,6 @@ export default function OurTeamSection() {
               <div>
                 <h3 className="font-semibold text-foreground text-sm sm:text-base">{member.name}</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">{member.title}</p>
-                <div className="mt-2 flex items-center justify-center gap-2 text-[11px] text-muted-foreground/80">
-                  <Building2 className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>{member.highSchool}</span>
-                </div>
                 <a
                   href={`mailto:${member.email}`}
                   title={member.email}
