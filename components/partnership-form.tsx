@@ -6,6 +6,7 @@ import { useState } from "react"
 import { CheckCircle, Truck, ShieldCheck, Clock } from "lucide-react"
 import { partnershipSchema, type PartnershipFormData } from "@/lib/partnership-schema"
 import { formatPhoneDisplay, normalizeEmail } from "@/lib/form-formatters"
+import { Button } from "@/components/ui/button"
 
 const frequencies = [
   "One-time donation",
@@ -150,16 +151,17 @@ export default function PartnershipForm() {
                   <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
                     Thanks for reaching out. Someone on our team will get back to you within 48 hours.
                   </p>
-                  <button
+                  <Button
                     type="button"
+                    variant="link"
+                    className="mt-2 h-auto p-0 text-sm text-brand-red hover:text-brand-red-dark"
                     onClick={() => {
                       setSubmitted(false)
                       setSubmitError(null)
                     }}
-                    className="mt-2 text-sm text-brand-red underline underline-offset-2 hover:text-brand-red-dark"
                   >
                     Submit another inquiry
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-8">
@@ -277,13 +279,15 @@ export default function PartnershipForm() {
                     </p>
                   )}
 
-                  <button
+                  <Button
                     type="submit"
+                    variant="brand"
+                    size="lg"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-md bg-brand-red text-white font-semibold text-sm hover:bg-brand-red-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full h-auto py-3.5 text-sm font-semibold"
                   >
                     {isSubmitting ? "Submitting..." : "Submit inquiry"}
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>

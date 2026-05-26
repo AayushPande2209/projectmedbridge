@@ -10,9 +10,9 @@ const footerLinks = {
     { label: "Become a Partner", href: "#partnership" },
   ],
   Connect: [
-    { label: "Instagram", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/project.medbridge/" },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/projectmedbridge/" },
-    { label: "Email Us", href: "mailto:pmedbridge@gmail.com" },
+    { label: "Email Us", href: "contact@projectmedbridge.org" },
   ],
 }
 

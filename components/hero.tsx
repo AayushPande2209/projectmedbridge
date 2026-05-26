@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import PartnerLogos from "@/components/partner-logos"
+import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   const [offset, setOffset] = useState(0)
@@ -50,18 +51,12 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-start">
-            <a
-              href="#partnership"
-              className="px-8 py-4 rounded-md bg-brand-red text-white font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 text-center"
-            >
-              Partner With Us
-            </a>
-            <a
-              href="#how-it-works"
-              className="px-8 py-4 rounded-md border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-colors text-center"
-            >
-              How It Works
-            </a>
+            <Button asChild variant="brand" size="lg" className="h-auto px-8 py-4 text-sm font-semibold shadow-lg shadow-brand-red/20">
+              <a href="#partnership">Partner With Us</a>
+            </Button>
+            <Button asChild variant="brand-ghost" size="lg" className="h-auto px-8 py-4 text-sm font-semibold">
+              <a href="#how-it-works">How It Works</a>
+            </Button>
           </div>
         </div>
 

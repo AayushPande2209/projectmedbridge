@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Mail } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const team = [
   {
@@ -43,7 +44,7 @@ export default function OurTeamSection() {
           The students coordinating every pickup and call.
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
           {team.map((member) => (
             <article key={member.name} className="flex flex-col items-center text-center gap-4">
               <div className="relative aspect-square w-full max-w-[200px] rounded-2xl border border-border overflow-hidden bg-muted">
@@ -58,15 +59,21 @@ export default function OurTeamSection() {
               <div>
                 <h3 className="font-semibold text-foreground text-sm sm:text-base">{member.name}</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">{member.title}</p>
-                <a
-                  href={`mailto:${member.email}`}
-                  title={member.email}
-                  aria-label={`Email ${member.name}`}
-                  className="mt-3 inline-flex items-center gap-2 rounded-full border border-border/20 px-3 py-2 text-[12px] font-medium text-muted-foreground hover:border-brand-red/60 hover:text-brand-red transition-colors"
+                <Button
+                  asChild
+                  variant="pill-outline"
+                  size="sm"
+                  className="mt-3 text-[12px] font-medium"
                 >
-                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>Email</span>
-                </a>
+                  <a
+                    href={`mailto:${member.email}`}
+                    title={member.email}
+                    aria-label={`Email ${member.name}`}
+                  >
+                    <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span>Email</span>
+                  </a>
+                </Button>
               </div>
             </article>
           ))}

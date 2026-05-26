@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const navLinks = [
   { label: "The Problem", href: "#problem" },
@@ -52,12 +53,9 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#partnership"
-            className="ml-2 px-4 py-2 text-sm font-semibold rounded-md bg-brand-red text-white hover:bg-brand-red-dark transition-colors"
-          >
-            Become a Partner
-          </a>
+          <Button asChild variant="brand" size="default" className="ml-2 text-sm font-semibold">
+            <a href="#partnership">Become a Partner</a>
+          </Button>
         </nav>
 
         {/* Mobile menu button */}
@@ -90,13 +88,9 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#partnership"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2 text-sm font-semibold rounded-md bg-brand-red text-white hover:bg-brand-red-dark transition-colors text-center"
-          >
-            Become a Partner
-          </a>
+          <Button asChild variant="brand" size="default" className="text-sm font-semibold w-full">
+            <a href="#partnership" onClick={() => setMenuOpen(false)}>Become a Partner</a>
+          </Button>
         </div>
       )}
     </header>
