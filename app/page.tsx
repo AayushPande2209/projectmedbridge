@@ -1,3 +1,5 @@
+export const dynamic = 'force-static'
+
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import FeaturedSection from "@/components/featured-section"

@@ -1,6 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -36,6 +38,7 @@ jobs:
       - name: Build static site
         run: pnpm run build
         env:
+          GITHUB_PAGES: true
           NEXT_PUBLIC_SITE_URL: https://www.projectmedbridge.org
           NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY }}
 

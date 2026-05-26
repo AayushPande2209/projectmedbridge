@@ -1,3 +1,5 @@
+export const dynamic = 'force-static'
+
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
