@@ -17,7 +17,7 @@ const steps = [
     icon: HeartHandshake,
     title: "Your surplus goes global",
     body:
-      "Everything we collect ships to Project C.U.R.E., the world's largest distributor of donated medical supplies. From there, it reaches hospitals and clinics in 135+ countries.",
+      "We route surplus through multiple international distributors that ship to under-resourced hospitals and clinics across dozens of countries worldwide.",
   },
 ]
 

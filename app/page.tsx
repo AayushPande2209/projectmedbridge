@@ -5,6 +5,7 @@ import Hero from "@/components/hero"
 import FeaturedSection from "@/components/featured-section"
 import ProblemSection from "@/components/problem-section"
 import HowItWorks from "@/components/how-it-works"
+import SdgsSection from "@/components/sdgs-section"
 import ImpactMetrics from "@/components/impact-metrics"
 import OurTeamSection from "@/components/our-team-section"
 import PartnershipForm from "@/components/partnership-form"
@@ -18,6 +19,7 @@ export default function Home() {
       <FeaturedSection />
       <ProblemSection />
       <HowItWorks />
+      <SdgsSection />
       {/* <ImpactMetrics /> */}
       <OurTeamSection />
       <PartnershipForm />
