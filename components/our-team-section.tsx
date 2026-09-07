@@ -2,75 +2,46 @@ import Image from "next/image"
 import { Mail } from "lucide-react"
 
 const team = [
-  {
-    name: "Ben Kurian",
-    title: "Team Lead",
-    image: "/images/ben-kurian.jpg",
-    email: "ben@projectmedbridge.org",
-  },
-  {
-    name: "Naman Soni",
-    title: "Operations",
-    image: "/images/naman-soni.jpg",
-    email: "naman@projectmedbridge.org",
-  },
-  {
-    name: "Aayush Pande",
-    title: "Technology",
-    image: "/images/aayush-pande.JPG",
-    email: "aayush@projectmedbridge.org",
-  },
-  {
-    name: "Vahin Dubey",
-    title: "Outreach",
-    image: "/images/vahin-dubey.jpg",
-    email: "vahin@projectmedbridge.org",
-  },
-  {
-    name: "Arjun Pandya",
-    title: "Partnerships",
-    image: "/images/arjun-pandya.JPG",
-    email: "arjun@projectmedbridge.org",
-  },
+  { name: "Ben Kurian", title: "Team Lead", image: "/images/ben-kurian.jpg", email: "ben@projectmedbridge.org" },
+  { name: "Naman Soni", title: "Operations", image: "/images/naman-soni.jpg", email: "naman@projectmedbridge.org" },
+  { name: "Aayush Pande", title: "Technology", image: "/images/aayush-pande.jpg", email: "aayush@projectmedbridge.org" },
+  { name: "Vahin Dubey", title: "Outreach", image: "/images/vahin-dubey.jpg", email: "vahin@projectmedbridge.org" },
+  { name: "Arjun Pandya", title: "Partnerships", image: "/images/arjun-pandya.jpg", email: "arjun@projectmedbridge.org" },
 ]
 
 export default function OurTeamSection() {
   return (
-    <section id="team" className="py-16 md:py-24 bg-white border-b border-border">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-[1.05] tracking-[-0.035em]">
-            Our team
-          </h2>
-        </div>
+    <section id="team" className="scroll-mt-16 border-b border-black bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <h2 className="text-4xl font-bold leading-none tracking-[-0.03em] sm:text-5xl">Meet the team.</h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
+        <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:mt-12 lg:grid-cols-5">
           {team.map((member) => (
-            <article key={member.name} className="flex flex-col gap-4">
-              <div className="relative aspect-square w-full max-w-[200px] overflow-hidden bg-neutral-100">
+            <li key={member.name} className="flex flex-col border border-black bg-white">
+              <div className="relative aspect-square w-full overflow-hidden border-b border-black bg-paper">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 210px"
                   className="object-cover"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
                 />
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground text-sm sm:text-base">{member.name}</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-1">{member.title}</p>
+              <div className="flex flex-1 flex-col px-4 pb-4 pt-4">
+                <h3 className="font-semibold leading-tight">{member.name}</h3>
+                <p className="mt-1 text-sm text-black/62">{member.title}</p>
                 <a
                   href={`mailto:${member.email}`}
                   aria-label={`Email ${member.name}`}
-                  className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-foreground hover:text-brand-red transition-colors"
+                  className="mt-5 inline-flex w-fit items-center gap-2 text-sm font-medium underline decoration-black/30 underline-offset-[3px] transition-colors hover:text-brand-red hover:decoration-brand-red"
                 >
-                  <Mail size={13} aria-hidden="true" />
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                   Email
                 </a>
               </div>
-            </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

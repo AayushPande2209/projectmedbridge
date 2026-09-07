@@ -3,9 +3,9 @@
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
-import { CheckCircle } from "lucide-react"
 import { partnershipSchema, type PartnershipFormData } from "@/lib/partnership-schema"
 import { formatPhoneDisplay, normalizeEmail } from "@/lib/form-formatters"
+import { siteEmail } from "@/lib/site"
 
 const frequencies = [
   "One-time donation",
@@ -17,16 +17,16 @@ const frequencies = [
 
 const benefits = [
   {
-    title: "Pickup at your dock",
-    description: "We schedule the collection and handle freight from your facility.",
+    title: "We arrange pickup",
+    description: "We coordinate directly with your facility and freight partners.",
   },
   {
-    title: "No cost to donate",
-    description: "Pickup and coordination are free for your organization.",
+    title: "No fee to participate",
+    description: "There is no charge for pickup or coordination.",
   },
   {
-    title: "Reply within two business days",
-    description: "We read each inquiry and send next steps.",
+    title: "A reply within two business days",
+    description: "A member of our team will review your note and get back to you.",
   },
 ]
 
@@ -50,7 +50,7 @@ export default function PartnershipForm() {
 
     const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
     if (!accessKey) {
-      setSubmitError("Form is not configured. Contact us at pmedbridge@gmail.com.")
+      setSubmitError(`Form is not configured. Contact us at ${siteEmail}.`)
       return
     }
 
@@ -93,7 +93,7 @@ export default function PartnershipForm() {
 
     if (!response.ok || !result?.success) {
       setSubmitError(
-        result?.message ?? "We couldn't send your inquiry. Please try again or email pmedbridge@gmail.com.",
+        result?.message ?? `We couldn't send your inquiry. Please try again or email ${siteEmail}.`,
       )
       return
     }
@@ -103,40 +103,43 @@ export default function PartnershipForm() {
   }
 
   const inputClass =
-    "w-full px-3 py-2.5 border border-input bg-white text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition"
+    "w-full border-0 bg-paper px-4 py-3 text-sm text-black placeholder:text-black/40 focus:outline-2 focus:outline-offset-0 focus:outline-brand-red"
 
   return (
-    <section id="partnership" className="py-16 md:py-20 bg-white border-b border-border">
+    <section id="donate" className="scroll-mt-16 border-b border-black bg-paper py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-5 flex flex-col gap-10">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-[1.05] tracking-[-0.035em]">
-                Donate unused supplies
-              </h2>
-            </div>
+        <div className="max-w-2xl">
+          <h2 className="text-4xl font-bold leading-none tracking-[-0.03em] sm:text-5xl">
+            Got surplus?
+          </h2>
+          <p className="mt-4 leading-relaxed text-black/68">
+            Send us a few details. We&apos;ll review your inventory and follow up within two business days.
+          </p>
+        </div>
 
-            <div className="flex flex-col gap-6">
+        <div className="mt-10 grid border border-black bg-white lg:grid-cols-12">
+          <div className="border-b border-black bg-black px-6 py-8 text-white md:px-8 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-9 lg:py-10">
+            <p className="text-xl font-bold tracking-[-0.02em]">What to expect</p>
+            <div className="mt-7 flex flex-col gap-6">
               {benefits.map((item) => {
                 return (
-                  <div key={item.title} className="border-t border-border pt-4">
-                    <p className="font-semibold text-foreground text-sm">{item.title}</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed mt-1">{item.description}</p>
+                  <div key={item.title} className="grid grid-cols-[8px_1fr] gap-3">
+                    <span className="mt-1.5 h-2 w-2 bg-brand-red" aria-hidden="true" />
+                    <div>
+                      <p className="text-sm font-semibold">{item.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-white/65">{item.description}</p>
+                    </div>
                   </div>
                 )
               })}
             </div>
           </div>
 
-          <div className="lg:col-span-7">
-            <div className="border-t border-black pt-7">
+          <div className="px-6 py-8 md:px-8 lg:col-span-8 lg:px-10 lg:py-10">
               {submitted ? (
-                <div className="flex flex-col items-center justify-center gap-4 text-center py-16">
-                  <div className="w-14 h-14 bg-brand-ice flex items-center justify-center">
-                    <CheckCircle size={28} className="text-brand-navy" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">We received your note</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
+                <div className="flex flex-col items-start gap-3 py-10">
+                  <h3 className="text-lg font-semibold">We received your note</h3>
+                  <p className="max-w-sm text-sm leading-relaxed text-black/62">
                     Someone from the team will write back within two business days.
                   </p>
                   <button
@@ -145,7 +148,7 @@ export default function PartnershipForm() {
                       setSubmitted(false)
                       setSubmitError(null)
                     }}
-                    className="mt-2 text-sm text-brand-red underline underline-offset-2 hover:text-brand-red-dark"
+                    className="mt-2 text-sm underline underline-offset-[3px] hover:text-brand-red"
                   >
                     Submit another inquiry
                   </button>
@@ -153,9 +156,9 @@ export default function PartnershipForm() {
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-8">
                   <div className="flex flex-col gap-5">
-                    <p className="text-sm font-semibold text-foreground">Contact</p>
+                    <h3 className="text-xl font-bold tracking-[-0.01em]">Your organization</h3>
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <Field label="Institution" required error={errors.institutionName?.message}>
+                      <Field label="Institution" htmlFor="institutionName" required error={errors.institutionName?.message}>
                         <input
                           id="institutionName"
                           type="text"
@@ -164,7 +167,7 @@ export default function PartnershipForm() {
                           {...register("institutionName")}
                         />
                       </Field>
-                      <Field label="Your name" required error={errors.contactName?.message}>
+                      <Field label="Your name" htmlFor="contactName" required error={errors.contactName?.message}>
                         <input
                           id="contactName"
                           type="text"
@@ -173,7 +176,7 @@ export default function PartnershipForm() {
                           {...register("contactName")}
                         />
                       </Field>
-                      <Field label="Role / title" required error={errors.role?.message}>
+                      <Field label="Role or title" htmlFor="role" required error={errors.role?.message}>
                         <input
                           id="role"
                           type="text"
@@ -182,7 +185,7 @@ export default function PartnershipForm() {
                           {...register("role")}
                         />
                       </Field>
-                      <Field label="Email" required error={errors.email?.message}>
+                      <Field label="Email" htmlFor="email" required error={errors.email?.message}>
                         <Controller
                           name="email"
                           control={control}
@@ -202,7 +205,7 @@ export default function PartnershipForm() {
                           )}
                         />
                       </Field>
-                      <Field label="Phone" className="sm:col-span-2" error={errors.phone?.message}>
+                      <Field label="Phone" htmlFor="phone" className="sm:col-span-2" error={errors.phone?.message}>
                         <Controller
                           name="phone"
                           control={control}
@@ -225,8 +228,8 @@ export default function PartnershipForm() {
                   </div>
 
                   <div className="flex flex-col gap-5">
-                    <p className="text-sm font-semibold text-foreground">Surplus details</p>
-                    <Field label="What supplies do you have?" required error={errors.supplyTypes?.message}>
+                    <h3 className="text-xl font-bold tracking-[-0.01em]">Available supplies</h3>
+                    <Field label="What supplies do you have?" htmlFor="supplyTypes" required error={errors.supplyTypes?.message}>
                       <input
                         id="supplyTypes"
                         type="text"
@@ -235,7 +238,7 @@ export default function PartnershipForm() {
                         {...register("supplyTypes")}
                       />
                     </Field>
-                    <Field label="How often could you donate?" required error={errors.frequency?.message}>
+                    <Field label="How often do you expect to have surplus?" htmlFor="frequency" required error={errors.frequency?.message}>
                       <select id="frequency" className={inputClass} {...register("frequency")}>
                         <option value="">Select frequency</option>
                         {frequencies.map((f) => (
@@ -245,7 +248,7 @@ export default function PartnershipForm() {
                         ))}
                       </select>
                     </Field>
-                    <Field label="Anything else we should know?" error={errors.message?.message}>
+                    <Field label="Anything else we should know?" htmlFor="message" error={errors.message?.message}>
                       <textarea
                         id="message"
                         rows={3}
@@ -257,7 +260,7 @@ export default function PartnershipForm() {
                   </div>
 
                   {submitError && (
-                    <p className="text-sm text-brand-red text-center" role="alert">
+                    <p className="text-sm text-brand-red" role="alert">
                       {submitError}
                     </p>
                   )}
@@ -265,13 +268,12 @@ export default function PartnershipForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-brand-red text-white font-semibold text-sm hover:bg-brand-red-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn btn-red w-full sm:w-fit sm:min-w-48 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {isSubmitting ? "Submitting..." : "Submit inquiry"}
+                    {isSubmitting ? "Sending..." : "Send inquiry"}
                   </button>
                 </form>
               )}
-            </div>
           </div>
         </div>
       </div>
@@ -281,12 +283,14 @@ export default function PartnershipForm() {
 
 function Field({
   label,
+  htmlFor,
   required,
   error,
   className,
   children,
 }: {
   label: string
+  htmlFor: string
   required?: boolean
   error?: string
   className?: string
@@ -294,9 +298,9 @@ function Field({
 }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className ?? ""}`}>
-      <label className="text-xs font-medium text-foreground">
+      <label htmlFor={htmlFor} className="text-xs font-medium">
         {label}
-        {required && <span className="text-brand-red ml-0.5">*</span>}
+        {required && <span className="ml-0.5 text-brand-red">*</span>}
       </label>
       {children}
       {error && <p className="text-xs text-brand-red">{error}</p>}

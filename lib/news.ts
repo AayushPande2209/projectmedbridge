@@ -1,6 +1,6 @@
 export type NewsStory = {
   slug: string
-  category: string
+  kicker: string
   date: string
   title: string
   summary: string
@@ -8,31 +8,36 @@ export type NewsStory = {
   imageAlt: string
   href: string
   linkLabel: string
+  /** Optional funding figure given typographic emphasis in the layout. */
+  funding?: { amount: string; label: string }
 }
+
+export const carnegieProgramUrl = "https://cands.org/carnegie-young-leaders/"
 
 export const newsStories: NewsStory[] = [
   {
     slug: "delaware-source-first-shipment",
-    category: "In the news",
+    kicker: "Delaware Source",
     date: "August 26, 2026",
-    title: "Delaware Source: One man's trash, another man's treasure",
+    title: "Olentangy students turn OhioHealth surplus into medical aid",
     summary:
-      "Delaware Source followed the full story: one cold email, nearly 50 pallets, two pickup days, and the persistence it took to find a humanitarian distribution partner.",
+      "Hannah Martin spoke with our team about how we redirected 30,000 pounds of surplus medical supplies.",
     image: "/images/medbridge-shipment-boxes.jpg",
-    imageAlt: "Pallets of medical supplies inside a freight trailer",
+    imageAlt: "Pallets of boxed medical supplies inside the freight trailer",
     href: "https://www.delawaresource.com/2026/08/26/one-mans-trash-another-mans-treasure-olentangy-students-turn-ohiohealth-surplus-into-medical-aid/",
-    linkLabel: "Read the Delaware Source article",
+    linkLabel: "Read the article",
   },
   {
-    slug: "2026-carnegie-young-leaders-convening",
-    category: "Recognition",
+    slug: "2026-carnegie-young-leaders",
+    kicker: "Institute for Citizens & Scholars",
     date: "July 27, 2026",
-    title: "Selected for the 2026 Carnegie Young Leaders class",
+    title: "Project MedBridge joins the 2026 Carnegie Young Leaders class",
     summary:
-      "Project MedBridge was one of 71 teams chosen nationwide, and one of two from Ohio. Ben Kurian attended the kickoff in New Brunswick, New Jersey. The program includes $7,500 in project support.",
+      "Ben represented MedBridge at the national kickoff convening in New Jersey, joining young civic leaders from across the country.",
     image: "/images/cyl-convening.jpg",
-    imageAlt: "Ben Kurian with fellow Carnegie Young Leaders at the 2026 kickoff convening",
+    imageAlt: "Ben Kurian with fellow Carnegie Young Leaders at the 2026 convening",
     href: "https://www.youtube.com/watch?v=8lhsXuLN2Fc",
-    linkLabel: "Watch the pitch video",
+    linkLabel: "Watch our winning pitch video",
+    funding: { amount: "$7,500", label: "in project funding" },
   },
 ]

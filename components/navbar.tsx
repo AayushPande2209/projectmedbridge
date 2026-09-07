@@ -1,79 +1,106 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { label: "First shipment", href: "#first-shipment" },
+  { label: "Inaugural shipment", href: "#first-shipment" },
   { label: "News", href: "#news" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Our team", href: "#team" },
+  { label: "Process", href: "#how-supplies-move" },
+  { label: "Team", href: "#team" },
 ]
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 32)
+    update()
+    window.addEventListener("scroll", update, { passive: true })
+    return () => window.removeEventListener("scroll", update)
+  }, [])
+
+  const solid = scrolled || menuOpen
 
   return (
-    <header className="sticky top-0 inset-x-0 z-50 bg-white border-b-4 border-brand-red">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center group">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-300 ${
+        solid ? "border-black bg-white" : "border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <a href="#" className="relative block h-8 w-[120px]" aria-label="Project MedBridge home">
           <Image
             src="/images/logo-dark.svg"
-            alt="Project MedBridge Logo"
+            alt="Project MedBridge"
             width={120}
             height={40}
-            className="h-8 w-auto object-contain"
+            className={`absolute inset-0 h-8 w-auto transition-opacity duration-300 ${solid ? "opacity-100" : "opacity-0"}`}
+            priority
+          />
+          <Image
+            src="/images/logo-light.svg"
+            alt=""
+            width={120}
+            height={40}
+            className={`absolute inset-0 h-8 w-auto transition-opacity duration-300 ${solid ? "opacity-0" : "opacity-100"}`}
+            aria-hidden="true"
             priority
           />
         </a>
 
-        <nav className="hidden md:flex items-center gap-5">
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-[13px] font-medium text-foreground transition-colors hover:text-brand-red"
+              className={`text-sm transition-colors duration-300 ${
+                solid ? "text-black hover:text-brand-red" : "text-white/90 hover:text-white"
+              }`}
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="#partnership"
-            className="ml-2 px-4 py-2 text-[13px] font-semibold bg-brand-red text-white hover:bg-brand-red-dark transition-colors"
-          >
-            Become a partner
+          <a href="#donate" className="btn btn-red ml-1 px-4 py-2.5">
+            Donate supplies
           </a>
         </nav>
 
         <button
-          className="md:hidden p-2 text-foreground transition-colors"
+          type="button"
+          className={`flex h-10 items-center justify-center px-2 text-sm transition-colors duration-300 md:hidden ${
+            solid ? "text-black" : "text-white"
+          }`}
           onClick={() => setMenuOpen((v) => !v)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          {menuOpen ? "Close" : "Menu"}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white border-b border-border px-6 pb-5 pt-2 flex flex-col gap-4">
-          {navLinks.map((link) => (
+        <div id="mobile-menu" className="border-t border-black bg-white md:hidden">
+          <nav className="mx-auto flex max-w-6xl flex-col px-6" aria-label="Main">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="border-b border-black py-4 text-base text-black"
+              >
+                {link.label}
+              </a>
+            ))}
             <a
-              key={link.href}
-              href={link.href}
+              href="#donate"
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-muted-foreground hover:text-brand-red transition-colors"
+              className="btn btn-red my-5 py-3.5"
             >
-              {link.label}
+              Donate supplies
             </a>
-          ))}
-          <a
-            href="#partnership"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2 text-sm font-semibold bg-brand-red text-white hover:bg-brand-red-dark transition-colors text-center"
-          >
-            Become a partner
-          </a>
+          </nav>
         </div>
       )}
     </header>

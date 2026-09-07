@@ -1,59 +1,29 @@
-// @ts-nocheck
-// This file was auto-created and injected by v0.
-// DO NOT MODIFY THIS FILE DIRECTLY.
-// EDIT THE USER CONFIG IN ./next.user-config.mjs INSTEAD.
-
+// @ts-check
 import { fileURLToPath } from 'url'
 import path from 'path'
 
-const __v0_turbopack_root = undefined ?? path.dirname(fileURLToPath(import.meta.url))
+const projectRoot = path.dirname(fileURLToPath(import.meta.url))
 
-let userConfigImport = {}
-try {
-  const userConfig = await import('./next.user-config.mjs')
-  userConfigImport = userConfig.default || userConfig
-} catch (e) {
-  // next.user-config.mjs not found, use empty config
-}
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ?? 'https://www.projectmedbridge.org'
 
-export default async function v0NextConfig(phase, { defaultConfig }) {
-  const userConfig = typeof userConfigImport === 'function'
-    ? await userConfigImport(phase, { defaultConfig })
-    : userConfigImport
-
-  return {
-  ...userConfig,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // The site is a static export served from GitHub Pages behind the custom domain.
+  output: 'export',
+  trailingSlash: true,
   distDir: '.next',
   devIndicators: false,
-  images: {
-    ...userConfig.images,
-    unoptimized: process.env.NODE_ENV === 'development',
+  env: {
+    NEXT_PUBLIC_SITE_URL: siteUrl,
   },
-  logging: {
-    ...userConfig.logging,
-    fetches: { fullUrl: true, hmrRefreshes: true },
-    browserToTerminal: true,
+  images: {
+    // Static hosting has no image optimizer, so serve the files as-is.
+    unoptimized: true,
   },
   turbopack: {
-    ...userConfig.turbopack,
-    root: __v0_turbopack_root,
+    root: projectRoot,
   },
-  experimental: {
-    ...userConfig.experimental,
-    transitionIndicator: true,
-    turbopackFileSystemCacheForDev: process.env.TURBOPACK_PERSISTENT_CACHE !== 'false' && process.env.TURBOPACK_PERSISTENT_CACHE !== '0',
-    serverActions: {
-      ...userConfig.experimental?.serverActions,
-      allowedOrigins: [
-        ...(userConfig.experimental?.serverActions?.allowedOrigins || []),
-        '*.vusercontent.net',
-      ],
-    },
-  },
-  allowedDevOrigins: [
-    ...(userConfig.allowedDevOrigins || []),
-    '*.vusercontent.net',
-    '*.dev-vm.vusercontent.net',
-  ],
 }
-}
+
+export default nextConfig

@@ -1,88 +1,90 @@
 import Image from "next/image"
+import { pressReleasePath } from "@/lib/site"
 
-const inventory = [
+const supportingMetrics = [
+  ["~50", "pallets"],
+  ["$250K", "estimated value"],
   ["9,393", "boxes of 3M N95 respirators"],
   ["20,736", "reusable hot and cold therapy packs"],
-]
+] as const
 
 export default function ShipmentStory() {
   return (
-    <section id="first-shipment" className="scroll-mt-16 bg-[#f5f5f3] py-16 md:py-24">
+    <section id="first-shipment" className="scroll-mt-16 border-b border-black bg-paper py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-9">
-          <div>
-            <p className="mb-3 text-base font-semibold text-brand-red">First shipment · August 2026</p>
-            <h2 className="max-w-4xl text-4xl font-bold leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              OhioHealth surplus, moved into humanitarian use.
-            </h2>
+        <p className="text-sm font-semibold text-brand-red">Inaugural shipment · August 2026</p>
+        <h2 className="mt-3 max-w-4xl text-4xl font-bold leading-[1.02] tracking-[-0.03em] sm:text-5xl lg:text-[3.5rem]">
+          We gave OhioHealth&apos;s COVID-era surplus a second life.
+        </h2>
+
+        {/*
+          One 1px-rule grid. The black background shows through the 1px gaps and
+          padding, so every rule is the same black and nothing double-borders.
+          Desktop: photo (7) | metrics (5) on row 1, caption | button on row 2.
+          The photo cell has no intrinsic height on desktop; it takes the height
+          the metrics column needs, so there is never a leftover blank zone.
+        */}
+        <div className="mt-10 grid gap-px bg-black p-px md:mt-12 lg:grid-cols-[7fr_5fr] lg:grid-rows-[auto_auto]">
+          <div className="relative aspect-square bg-white lg:col-start-1 lg:row-start-1 lg:aspect-auto">
+            <Image
+              src="/images/medbridge-first-shipment.jpg"
+              alt="Ben Kurian and Naman Soni sitting on the back of the loaded truck"
+              fill
+              sizes="(max-width: 1024px) 100vw, 672px"
+              className="object-cover object-[50%_25%]"
+            />
           </div>
-        </div>
 
-        <div className="border border-black bg-white">
-          <div className="grid items-stretch lg:grid-cols-12">
-            <figure className="grid min-w-0 grid-rows-[1fr_auto] lg:col-span-8 lg:min-h-[620px] lg:border-r lg:border-black">
-              <div className="relative aspect-[4/3] bg-neutral-200 md:aspect-[16/10] lg:aspect-auto lg:min-h-0">
-                <Image
-                  src="/images/medbridge-first-shipment.jpg"
-                  alt="Ben Kurian and Naman Soni at the completed OhioHealth medical supply pickup"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 66vw"
-                />
-              </div>
-              <figcaption className="border-t border-black px-5 py-4 text-sm text-neutral-600">
-                Ben Kurian and Naman Soni after the second pickup, August 6, 2026.
-              </figcaption>
-            </figure>
+          <p className="flex min-h-14 items-center bg-white px-5 py-3 text-[0.8125rem] leading-snug text-black/62 lg:col-start-1 lg:row-start-2">
+            Ben Kurian and Naman Soni after the second pickup, August 6, 2026.
+          </p>
 
-            <div className="flex min-w-0 flex-col border-t border-black lg:col-span-4 lg:border-t-0">
-              <div className="bg-black p-6 text-white md:p-8">
-                <p className="text-6xl font-bold leading-none tracking-[-0.055em] md:text-7xl">30,000</p>
-                <p className="mt-3 text-lg">pounds of usable supplies redirected</p>
-              </div>
+          <div className="grid gap-px bg-black lg:col-start-2 lg:row-start-1 lg:grid-rows-[auto_auto_1fr]">
+            <div className="bg-brand-red px-6 py-7 text-white md:px-7 md:py-8">
+              <p className="text-[4.25rem] font-bold leading-[0.9] tracking-[-0.04em] md:text-[4.75rem]">30,000</p>
+              <p className="mt-2 text-2xl font-medium leading-none tracking-[-0.01em] md:text-[1.75rem]">pounds</p>
+              <p className="mt-3 text-base text-white/75">redirected for reuse</p>
+            </div>
 
-              <div className="grid grid-cols-2 border-b border-black">
-                <div className="border-r border-black p-5 md:p-6">
-                  <p className="text-3xl font-semibold tracking-tight">~50</p>
-                  <p className="mt-1 text-sm text-neutral-600">pallets</p>
+            <div className="grid grid-cols-2 gap-px bg-black">
+              {supportingMetrics.map(([value, label]) => (
+                <div key={label} className="bg-white px-5 py-5 md:px-6">
+                  <p className="text-[1.75rem] font-bold leading-none tracking-[-0.03em]">{value}</p>
+                  <p className="mt-2 text-sm leading-snug text-black/62">{label}</p>
                 </div>
-                <div className="p-5 md:p-6">
-                  <p className="text-3xl font-semibold tracking-tight">$250K</p>
-                  <p className="mt-1 text-sm text-neutral-600">estimated value</p>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              <div>
-                {inventory.map(([value, label]) => (
-                  <div key={value} className="border-b border-black p-5 md:p-6">
-                    <p className="text-2xl font-semibold tracking-tight">{value}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-neutral-600">{label}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-1 flex-col items-center justify-center p-6 text-center md:p-8">
-                <p className="text-sm font-semibold">Destination</p>
-                <a href="https://brothersbrother.org/" target="_blank" rel="noopener noreferrer" className="mt-4 block w-fit">
-                  <Image
-                    src="/images/bbf-logo.png"
-                    alt="Brother's Brother Foundation"
-                    width={220}
-                    height={57}
-                    className="h-auto w-[190px] brightness-0"
-                  />
-                </a>
-                <p className="mt-4 text-sm text-neutral-600">Pittsburgh, Pennsylvania</p>
-              </div>
+            <div className="flex flex-col justify-center bg-white px-5 py-6 md:px-6">
+              <p className="text-sm text-black/62">Delivered to</p>
               <a
-                href="/press/project-medbridge-first-shipment-release.pdf"
+                href="https://brothersbrother.org/"
                 target="_blank"
-                className="flex min-h-20 items-center justify-center border-t border-black bg-brand-red px-5 text-center text-sm font-semibold text-white hover:bg-brand-red-dark"
+                rel="noopener noreferrer"
+                className="mt-4 block w-fit transition-opacity hover:opacity-60"
               >
-                Read the press release
+                <Image
+                  src="/images/bbf-logo.png"
+                  alt="Brother's Brother Foundation"
+                  width={587}
+                  height={152}
+                  sizes="150px"
+                  className="h-9 w-auto brightness-0 md:h-10"
+                />
               </a>
+              <p className="mt-4 font-semibold leading-tight">Brother&apos;s Brother Foundation</p>
+              <p className="mt-1 text-sm text-black/62">Pittsburgh, Pennsylvania</p>
             </div>
           </div>
+
+          <a
+            href={pressReleasePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-black min-h-14 lg:col-start-2 lg:row-start-2"
+          >
+            Read the press release
+          </a>
         </div>
       </div>
     </section>

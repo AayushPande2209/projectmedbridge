@@ -1,65 +1,65 @@
 import Image from "next/image"
+import { instagramUrl, linkedInUrl, pressReleasePath, siteEmail } from "@/lib/site"
 
 const footerLinks = {
   Organization: [
-    { label: "News", href: "#news" },
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Our team", href: "#team" },
+    { label: "Inaugural shipment", href: "#first-shipment" },
+    { label: "News and updates", href: "#news" },
+    { label: "Process", href: "#how-supplies-move" },
+    { label: "Team", href: "#team" },
   ],
   Resources: [
-    { label: "Become a partner", href: "#partnership" },
-    {
-      label: "Press release",
-      href: "/press/project-medbridge-first-shipment-release.pdf",
-    },
+    { label: "Donate supplies", href: "#donate" },
+    { label: "Press release", href: pressReleasePath },
   ],
   Connect: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/projectmedbridge/" },
-    { label: "Instagram", href: "https://www.instagram.com/project.medbridge/" },
-    { label: "Email us", href: "mailto:pmedbridge@gmail.com" },
+    { label: "Instagram", href: instagramUrl },
+    { label: "LinkedIn", href: linkedInUrl },
+    { label: "Email", href: `mailto:${siteEmail}` },
   ],
 }
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0B0C10] text-white/80 border-t border-white/10">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-4 gap-12 mb-14">
-          <div className="md:col-span-1">
-            <a href="#" className="flex items-center mb-4">
-              <Image
-                src="/images/logo-light.svg"
-                alt="Project MedBridge Logo"
-                width={138}
-                height={40}
-                className="h-10 w-auto object-contain"
-                priority
-              />
+    <footer className="bg-black text-white">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-5">
+            <a href="#" className="inline-block" aria-label="Project MedBridge home">
+              <Image src="/images/logo-light.svg" alt="Project MedBridge" width={138} height={40} className="h-9 w-auto" />
             </a>
-            <p className="text-sm leading-relaxed text-white/60 text-pretty">
+            <p className="mt-4 max-w-xs text-sm leading-snug text-white/70">
               One hospital&apos;s trash is another&apos;s treasure.
             </p>
           </div>
 
           {Object.entries(footerLinks).map(([group, links]) => (
-            <div key={group}>
-              <p className="text-sm font-medium text-white/50 mb-5">{group}</p>
-              <ul className="flex flex-col gap-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="text-sm text-white/60 hover:text-white transition-colors">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+            <div key={group} className="md:col-span-2">
+              <p className="text-sm text-white/50">{group}</p>
+              <ul className="mt-4 flex flex-col gap-2.5">
+                {links.map((link) => {
+                  const external = link.href.startsWith("http")
+                  return (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="text-sm text-white/80 transition-colors hover:text-white"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">&copy; {new Date().getFullYear()} Project MedBridge. All rights reserved.</p>
-          <p className="text-xs text-white/30">Columbus, Ohio</p>
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/30 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} Project MedBridge. All rights reserved.</p>
+          <p>Columbus, Ohio</p>
         </div>
       </div>
     </footer>

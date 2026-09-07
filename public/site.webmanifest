@@ -1,0 +1,26 @@
+{
+  "id": "https://www.projectmedbridge.org/",
+  "name": "Project MedBridge",
+  "short_name": "MedBridge",
+  "description": "Student-led medical supply redistribution in Central Ohio.",
+  "start_url": "https://www.projectmedbridge.org/",
+  "scope": "https://www.projectmedbridge.org/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "images/og.jpg",
+      "sizes": "2400x1260",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

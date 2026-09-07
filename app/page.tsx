@@ -1,9 +1,8 @@
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
-import PartnerLogos from "@/components/partner-logos"
 import ShipmentStory from "@/components/shipment-story"
 import NewsSection from "@/components/news-section"
-import HowItWorks from "@/components/how-it-works"
+import HowSuppliesMove from "@/components/how-supplies-move"
 import OurTeamSection from "@/components/our-team-section"
 import PartnershipForm from "@/components/partnership-form"
 import Footer from "@/components/footer"
@@ -13,10 +12,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <PartnerLogos />
       <ShipmentStory />
       <NewsSection />
-      <HowItWorks />
+      <HowSuppliesMove />
       <OurTeamSection />
       <PartnershipForm />
       <Footer />
