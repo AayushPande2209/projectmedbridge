@@ -4,36 +4,36 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* MedBridge brand colors — palette: #2B2D42 / #8D99AE / #EDF2F4 / #D90429 */
-  --brand-navy: #2B2D42;
-  --brand-slate: #8D99AE;
-  --brand-slate-light: #c7cfe0;
-  --brand-ice: #EDF2F4;
+  /* Project MedBridge: red, black, white, and neutral gray only. */
+  --brand-navy: #111111;
+  --brand-slate: #737373;
+  --brand-slate-light: #d9d9d9;
+  --brand-ice: #f5f5f3;
   --brand-red: #D90429;
   --brand-red-dark: #b3031f;
 
-  --background: #EDF2F4;
-  --foreground: #2B2D42;
+  --background: #ffffff;
+  --foreground: #111111;
   --card: #ffffff;
-  --card-foreground: #2B2D42;
+  --card-foreground: #111111;
   --popover: #ffffff;
-  --popover-foreground: #2B2D42;
-  --primary: #2B2D42;
-  --primary-foreground: #EDF2F4;
-  --secondary: #c7cfe0;
-  --secondary-foreground: #2B2D42;
-  --muted: #dde4ed;
-  --muted-foreground: #5a6378;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --secondary: #e5e5e5;
+  --secondary-foreground: #111111;
+  --muted: #eeeeec;
+  --muted-foreground: #666666;
   --accent: #D90429;
   --accent-foreground: #ffffff;
   --destructive: #D90429;
   --destructive-foreground: #D90429;
-  --border: #c7cfe0;
-  --input: #c7cfe0;
-  --ring: #8D99AE;
+  --border: #d9d9d6;
+  --input: #c9c9c6;
+  --ring: #D90429;
   --chart-1: #D90429;
-  --chart-2: #2B2D42;
-  --chart-3: #8D99AE;
+  --chart-2: #111111;
+  --chart-3: #737373;
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.5rem;
@@ -136,19 +136,10 @@
   body {
     @apply bg-background text-foreground;
   }
-  p a,
-  li a {
-    @apply text-foreground font-medium underline underline-offset-4 decoration-brand-red/40 transition-colors;
+  p a, li a {
+    @apply underline text-inherit transition-colors duration-150;
   }
-  p a:hover,
-  li a:hover {
-    @apply decoration-brand-red;
+  p a:hover, li a:hover {
+    @apply text-brand-red;
   }
 }
-
-@layer components {
-  .link-text {
-    @apply text-foreground font-medium underline underline-offset-4 decoration-brand-red/40 hover:decoration-brand-red transition-colors;
-  }
-}
-

@@ -3,10 +3,9 @@
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
-import { CheckCircle, Truck, ShieldCheck, Clock } from "lucide-react"
+import { CheckCircle } from "lucide-react"
 import { partnershipSchema, type PartnershipFormData } from "@/lib/partnership-schema"
 import { formatPhoneDisplay, normalizeEmail } from "@/lib/form-formatters"
-import { Button } from "@/components/ui/button"
 
 const frequencies = [
   "One-time donation",
@@ -18,19 +17,16 @@ const frequencies = [
 
 const benefits = [
   {
-    icon: Truck,
-    title: "We handle pickup",
-    description: "One scheduled stop at your dock. No staff time on logistics.",
+    title: "Pickup at your dock",
+    description: "We schedule the collection and handle freight from your facility.",
   },
   {
-    icon: ShieldCheck,
-    title: "No cost to you",
-    description: "Free for your organization and aligned with donation protocols.",
+    title: "No cost to donate",
+    description: "Pickup and coordination are free for your organization.",
   },
   {
-    icon: Clock,
-    title: "48-hour follow-up",
-    description: "We read every inquiry and reply within two business days.",
+    title: "Reply within two business days",
+    description: "We read each inquiry and send next steps.",
   },
 ]
 
@@ -107,68 +103,57 @@ export default function PartnershipForm() {
   }
 
   const inputClass =
-    "w-full px-3 py-2.5 rounded-md border border-input bg-white text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition"
+    "w-full px-3 py-2.5 border border-input bg-white text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition"
 
   return (
-    <section id="partnership" className="py-24 bg-white border-b border-border/35">
+    <section id="partnership" className="py-16 md:py-20 bg-white border-b border-border">
       <div className="max-w-6xl mx-auto px-6">
-        <p className="text-xs font-semibold tracking-widest uppercase text-brand-red mb-4">Partner With Us</p>
-
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left — headline + what to expect */}
           <div className="lg:col-span-5 flex flex-col gap-10">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-foreground leading-[1.1] tracking-tight text-balance">
-              Tell us what you have and we&apos;ll schedule a pickup.
-            </h2>
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-[1.05] tracking-[-0.035em]">
+                Donate unused supplies
+              </h2>
+            </div>
 
             <div className="flex flex-col gap-6">
               {benefits.map((item) => {
-                const Icon = item.icon
                 return (
-                  <div key={item.title} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-brand-ice border border-border flex items-center justify-center flex-shrink-0">
-                      <Icon size={18} className="text-brand-red" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground text-sm">{item.title}</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed mt-1">{item.description}</p>
-                    </div>
+                  <div key={item.title} className="border-t border-border pt-4">
+                    <p className="font-semibold text-foreground text-sm">{item.title}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed mt-1">{item.description}</p>
                   </div>
                 )
               })}
             </div>
           </div>
 
-          {/* Right — form */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-border bg-background p-6 sm:p-8 lg:p-10">
+            <div className="border-t border-black pt-7">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center gap-4 text-center py-16">
-                  <div className="w-14 h-14 rounded-full bg-brand-ice flex items-center justify-center">
+                  <div className="w-14 h-14 bg-brand-ice flex items-center justify-center">
                     <CheckCircle size={28} className="text-brand-navy" />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">Inquiry received</h3>
+                  <h3 className="text-lg font-semibold text-foreground">We received your note</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-                    Thanks for reaching out. Someone on our team will get back to you within 48 hours.
+                    Someone from the team will write back within two business days.
                   </p>
-                  <Button
+                  <button
                     type="button"
-                    variant="link"
-                    className="mt-2 h-auto p-0 text-sm text-brand-red hover:text-brand-red-dark"
                     onClick={() => {
                       setSubmitted(false)
                       setSubmitError(null)
                     }}
+                    className="mt-2 text-sm text-brand-red underline underline-offset-2 hover:text-brand-red-dark"
                   >
                     Submit another inquiry
-                  </Button>
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-8">
                   <div className="flex flex-col gap-5">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                      Contact
-                    </p>
+                    <p className="text-sm font-semibold text-foreground">Contact</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <Field label="Institution" required error={errors.institutionName?.message}>
                         <input
@@ -240,9 +225,7 @@ export default function PartnershipForm() {
                   </div>
 
                   <div className="flex flex-col gap-5">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                      Surplus details
-                    </p>
+                    <p className="text-sm font-semibold text-foreground">Surplus details</p>
                     <Field label="What supplies do you have?" required error={errors.supplyTypes?.message}>
                       <input
                         id="supplyTypes"
@@ -279,15 +262,13 @@ export default function PartnershipForm() {
                     </p>
                   )}
 
-                  <Button
+                  <button
                     type="submit"
-                    variant="brand"
-                    size="lg"
                     disabled={isSubmitting}
-                    className="w-full h-auto py-3.5 text-sm font-semibold"
+                    className="w-full py-3.5 bg-brand-red text-white font-semibold text-sm hover:bg-brand-red-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? "Submitting..." : "Submit inquiry"}
-                  </Button>
+                  </button>
                 </form>
               )}
             </div>

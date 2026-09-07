@@ -1,38 +1,25 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { label: "The Problem", href: "#problem" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Our Team", href: "#team" },
+  { label: "First shipment", href: "#first-shipment" },
+  { label: "News", href: "#news" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "Our team", href: "#team" },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/95 backdrop-blur-sm border-b border-border shadow-sm"
-        : "bg-transparent"
-        }`}
-    >
+    <header className="sticky top-0 inset-x-0 z-50 bg-white border-b-4 border-brand-red">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <a href="#" className="flex items-center group">
           <Image
-            src={scrolled ? "/images/logo-dark.svg" : "/images/logo-light.svg"}
+            src="/images/logo-dark.svg"
             alt="Project MedBridge Logo"
             width={120}
             height={40}
@@ -41,27 +28,26 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-5">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-brand-red ${scrolled ? "text-muted-foreground" : "text-white/80"
-                }`}
+              className="text-[13px] font-medium text-foreground transition-colors hover:text-brand-red"
             >
               {link.label}
             </a>
           ))}
-          <Button asChild variant="brand" size="default" className="ml-2 text-sm font-semibold">
-            <a href="#partnership">Become a Partner</a>
-          </Button>
+          <a
+            href="#partnership"
+            className="ml-2 px-4 py-2 text-[13px] font-semibold bg-brand-red text-white hover:bg-brand-red-dark transition-colors"
+          >
+            Become a partner
+          </a>
         </nav>
 
-        {/* Mobile menu button */}
         <button
-          className={`md:hidden p-2 rounded-md transition-colors ${scrolled ? "text-foreground" : "text-white"
-            }`}
+          className="md:hidden p-2 text-foreground transition-colors"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
@@ -69,28 +55,25 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
-        <div
-          className={`md:hidden border-b px-6 pb-5 pt-2 flex flex-col gap-4 ${
-            scrolled ? "bg-white border-border" : "bg-[#0B0C10] border-white/10"
-          }`}
-        >
+        <div className="md:hidden bg-white border-b border-border px-6 pb-5 pt-2 flex flex-col gap-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className={`text-sm font-medium transition-colors ${
-                scrolled ? "text-muted-foreground hover:text-brand-red" : "text-white/80 hover:text-brand-red"
-              }`}
+              className="text-sm font-medium text-muted-foreground hover:text-brand-red transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <Button asChild variant="brand" size="default" className="text-sm font-semibold w-full">
-            <a href="#partnership" onClick={() => setMenuOpen(false)}>Become a Partner</a>
-          </Button>
+          <a
+            href="#partnership"
+            onClick={() => setMenuOpen(false)}
+            className="px-4 py-2 text-sm font-semibold bg-brand-red text-white hover:bg-brand-red-dark transition-colors text-center"
+          >
+            Become a partner
+          </a>
         </div>
       )}
     </header>

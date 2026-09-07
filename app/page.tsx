@@ -1,12 +1,9 @@
-export const dynamic = 'force-static'
-
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
-import FeaturedSection from "@/components/featured-section"
-import ProblemSection from "@/components/problem-section"
+import PartnerLogos from "@/components/partner-logos"
+import ShipmentStory from "@/components/shipment-story"
+import NewsSection from "@/components/news-section"
 import HowItWorks from "@/components/how-it-works"
-import SdgsSection from "@/components/sdgs-section"
-import ImpactMetrics from "@/components/impact-metrics"
 import OurTeamSection from "@/components/our-team-section"
 import PartnershipForm from "@/components/partnership-form"
 import Footer from "@/components/footer"
@@ -16,11 +13,10 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <FeaturedSection />
-      <ProblemSection />
+      <PartnerLogos />
+      <ShipmentStory />
+      <NewsSection />
       <HowItWorks />
-      <SdgsSection />
-      {/* <ImpactMetrics /> */}
       <OurTeamSection />
       <PartnershipForm />
       <Footer />
